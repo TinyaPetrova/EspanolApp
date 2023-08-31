@@ -1,4 +1,4 @@
-package appMenu;
+package app;
 
 public class QuizQuestion {
 

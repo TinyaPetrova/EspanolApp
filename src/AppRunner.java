@@ -1,4 +1,4 @@
-import appMenu.MenuManager;
+import app.MenuManager;
 
 public class AppRunner {
 

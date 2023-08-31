@@ -1,4 +1,4 @@
-package appMenu;
+package app;
 
 import texts.MenuText;
 import visual.Colors;
