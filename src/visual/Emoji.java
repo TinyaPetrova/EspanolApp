@@ -1,4 +1,4 @@
-package Visual;
+package visual;
 
 public enum Emoji {
   CHEERS("👋\uD83D\uDE3A"),
@@ -11,7 +11,9 @@ public enum Emoji {
   TWO("2️⃣"),
   THREE("3️⃣"),
   FOUR("4️⃣"),
-  FIVE("5️⃣");
+  FIVE("5️⃣"),
+  SIX("6️⃣"),
+  SEVEN("7️⃣");
 
   private final String emoji;
 
