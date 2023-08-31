@@ -1,13 +1,14 @@
-package Visual;
+package texts;
 
 public enum Message {
+  INTRO("•*´¨`*•.¸¸..•*´¨`*HABLAMOS ESPAÑOL•.¸¸..•*´¨`*•.¸¸.•*"),
   CHEERS("Привет!"),
   GREETING("Bienvenido в приложение для изучения испанского языка"),
+  ERROR("Неверный выбор. Попробуй снова!"),
   GREAT("Отличная работа!"),
   DONE("Готово!"),
   WRONG("Не совсем верно!"),
-  GO_AHEAD("Вперёд!"),
-  WRITE_DOWN("Записываем!");
+  GO_AHEAD("Вперёд!");
 
   private final String message;
 
