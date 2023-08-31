@@ -1,4 +1,4 @@
-package AppMenu;
+package appMenu;
 
 public class GrammarExercise {
 
