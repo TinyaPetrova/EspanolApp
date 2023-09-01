@@ -3,7 +3,7 @@ package visual;
 public enum Colors {
   RED("\u001B[31m"),
   YELLOW("\u001B[33m"),
-  GREEN("\u001B[35m"),
+  PURPLE("\u001B[35m"),
   RESET("\u001B[0m");
 
   private final String color;
