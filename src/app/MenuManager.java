@@ -9,7 +9,7 @@ import visual.Separator;
 
 public class MenuManager {
 
-  private VocabularyManager vocabularyManager = new VocabularyManager();
+  private VocabularyManager vocabularyManager;
   private Scanner scanner;
 
   public MenuManager() {
@@ -80,12 +80,12 @@ public class MenuManager {
         Colors.YELLOW.getColor() + Separator.DOWN_LINE.getSeparator() + Colors.RESET.getColor());
 
     while (true) {
-      System.out.println(MenuText.CHOICE.getMenuText());
       System.out.println(Emoji.ONE.getEmoji() + " " + MenuText.ADD_WORD.getMenuText());
       System.out.println(Emoji.TWO.getEmoji() + " " + MenuText.DELETE_WORD.getMenuText());
       System.out.println(Emoji.THREE.getEmoji() + " " + MenuText.CHANGE_WORD.getMenuText());
       System.out.println(Emoji.FOUR.getEmoji() + " " + MenuText.SHOW_VOCAB.getMenuText());
       System.out.println(Emoji.FIVE.getEmoji() + " " + MenuText.BACK_TO_MENU.getMenuText());
+      System.out.println(Colors.YELLOW.getColor() + MenuText.CHOICE.getMenuText() + Colors.RESET.getColor());
       int choice = scanner.nextInt();
       switch (choice) {
         case 1:
@@ -104,9 +104,10 @@ public class MenuManager {
           vocabularyManager.printVocabulary();
           break;
         case 5:
+          System.out.println(Colors.YELLOW.getColor() + Separator.SIMPLE_LINE.getSeparator() + Colors.RESET.getColor());
           return;
         default:
-          System.out.println(Emoji.WRONG.getEmoji() + Message.ERROR);
+          System.out.println(Emoji.WRONG.getEmoji() + Colors.RED.getColor() + Message.ERROR.getMessage() + Colors.RESET.getColor());
           break;
       }
     }

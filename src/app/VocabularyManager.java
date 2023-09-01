@@ -2,9 +2,12 @@ package app;
 
 import java.io.FileWriter;
 import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.util.*;
 
 import visual.Colors;
+import visual.Separator;
 
 public class VocabularyManager {
 
@@ -13,28 +16,28 @@ public class VocabularyManager {
 
   public VocabularyManager() {
     vocabulary = new HashMap<>();
+    loadFromFile();
   }
 
   public void addWord(String russian, String spanish) {
     vocabulary.put(russian, spanish);
-    saveToFile();
   }
 
   public void removeWord(String russian) {
     vocabulary.remove(russian);
-    saveToFile();
   }
 
   public void replaceWord(String russian, String newSpanish) {
     vocabulary.put(russian, newSpanish);
-    saveToFile();
   }
 
   public void printVocabulary() {
     System.out.println(Colors.YELLOW.getColor() + "Вот твой словарик:" + Colors.RESET.getColor());
+    System.out.println(Colors.PURPLE.getColor() + Separator.DECORATION.getSeparator() + Colors.RESET.getColor());
     for (Map.Entry<String, String> entry : vocabulary.entrySet()) {
       System.out.println(entry.getKey() + " - " + entry.getValue());
     }
+    System.out.println(Colors.PURPLE.getColor() + Separator.DECORATION.getSeparator() + Colors.RESET.getColor());
   }
 
   public void saveToFile() {
@@ -44,7 +47,7 @@ public class VocabularyManager {
       for (Map.Entry<String, String> entry : sortedVocabulary) {
         writer.write(entry.getKey() + " - " + entry.getValue() + "\n");
       }
-      System.out.println(Colors.GREEN.getColor() + "Словарик сохранен в файл " + filePath
+      System.out.println(Colors.PURPLE.getColor() + "Словарик сохранен в файл " + filePath
           + Colors.RESET.getColor());
     } catch (IOException e) {
       System.out.println(Colors.RED.getColor() + "Ошибка при записи в файл: " + e.getMessage()
@@ -70,7 +73,7 @@ public class VocabularyManager {
       removeWord(russianWord);
       saveToFile();
       System.out.println(
-          Colors.GREEN.getColor() + "Слово удалено из словаря!" + Colors.RESET.getColor());
+          Colors.PURPLE.getColor() + "Слово удалено из словаря!" + Colors.RESET.getColor());
     } else {
       System.out.println(Colors.RED.getColor() + "Такого слова нет!" + Colors.RESET.getColor());
     }
@@ -87,8 +90,25 @@ public class VocabularyManager {
     }
     System.out.print("Введите новое испанское слово: ");
     String newSpanishWord = scanner.nextLine();
-    replaceWord(russianWord, newSpanishWord);
+    vocabulary.put(russianWord, newSpanishWord);
+    saveToFile();
     System.out.println(
-        Colors.GREEN.getColor() + "Слово заменено в словаре!" + Colors.RESET.getColor());
+        Colors.PURPLE.getColor() + "Слово заменено в словаре!" + Colors.RESET.getColor());
+  }
+
+
+
+  private void loadFromFile() {
+    try {
+      List<String> lines = Files.readAllLines(Paths.get(filePath));
+      for (String line : lines) {
+        String[] parts = line.split(" - ");
+        if (parts.length == 2) {
+          vocabulary.put(parts[0], parts[1]);
+        }
+      }
+    } catch (IOException e) {
+      System.out.println(Colors.RED.getColor() + "Не получилось загрузить данные!" + Colors.RESET.getColor());
+    }
   }
 }
