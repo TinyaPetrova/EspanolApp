@@ -5,6 +5,7 @@ public enum Emoji {
   GREAT("\uD83D\uDE3B✊"),
   DONE("\uD83D\uDE38✅"),
   WRONG("\uD83D\uDE3F❌"),
+  IDEA("\uD83D\uDCA1"),
   GO_AHEAD("💪\uD83D\uDE3B"),
   WRITE_DOWN("✏️\uD83D\uDE3A"),
   ONE("1️⃣"),
