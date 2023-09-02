@@ -1,8 +1,5 @@
 package app;
 
-import java.awt.Desktop;
-import java.io.File;
-import java.io.IOException;
 import texts.MenuText;
 import visual.Colors;
 import visual.Emoji;
@@ -13,10 +10,12 @@ import visual.Separator;
 public class MenuManager {
 
   private VocabularyManager vocabularyManager;
+  private InterestingFacts interestingFacts;
   private Scanner scanner;
 
-  public MenuManager() {
+  public MenuManager(String factsFilePath) {
     vocabularyManager = new VocabularyManager();
+    interestingFacts = new InterestingFacts(factsFilePath);
     scanner = new Scanner(System.in);
   }
 
@@ -62,6 +61,7 @@ public class MenuManager {
           break;
         case 6:
           // факты об Испании
+          runRandomFactsSubMenu();
           break;
         case 7:
           System.exit(0);
@@ -91,7 +91,8 @@ public class MenuManager {
       System.out.println(Emoji.SIX.getEmoji() + " " + MenuText.ESP_SORTING.getMenuText());
       System.out.println(Emoji.SEVEN.getEmoji() + " " + MenuText.OPEN_FILE.getMenuText());
       System.out.println(Emoji.EIGHT.getEmoji() + " " + MenuText.BACK_TO_MENU.getMenuText());
-      System.out.println(Colors.YELLOW.getColor() + MenuText.CHOICE.getMenuText() + Colors.RESET.getColor());
+      System.out.println(
+          Colors.YELLOW.getColor() + MenuText.CHOICE.getMenuText() + Colors.RESET.getColor());
       int choice = scanner.nextInt();
       switch (choice) {
         case 1:
@@ -119,10 +120,51 @@ public class MenuManager {
           vocabularyManager.openVocabulary();
           break;
         case 8:
-          System.out.println(Colors.YELLOW.getColor() + Separator.SIMPLE_LINE.getSeparator() + Colors.RESET.getColor());
+          System.out.println(Colors.YELLOW.getColor() + Separator.SIMPLE_LINE.getSeparator()
+              + Colors.RESET.getColor());
           return;
         default:
-          System.out.println(Emoji.WRONG.getEmoji() + Colors.RED.getColor() + Message.ERROR.getMessage() + Colors.RESET.getColor());
+          System.out.println(
+              Emoji.WRONG.getEmoji() + Colors.RED.getColor() + Message.ERROR.getMessage()
+                  + Colors.RESET.getColor());
+          break;
+      }
+    }
+  }
+
+  private void runRandomFactsSubMenu() {
+    scanner = new Scanner(System.in);
+    System.out.println(
+        Colors.YELLOW.getColor() + Separator.UPPER_LINE.getSeparator() + Colors.RESET.getColor());
+    System.out.println(Emoji.IDEA.getEmoji() + " Держи любопытный факт об Испании - у нас их много!");
+    System.out.println(
+        Colors.YELLOW.getColor() + Separator.DOWN_LINE.getSeparator() + Colors.RESET.getColor());
+
+    while (true) {
+      System.out.println(Emoji.ONE.getEmoji() + " " + MenuText.GET_FACT.getMenuText());
+      System.out.println(Emoji.TWO.getEmoji() + " " + MenuText.BACK_TO_MENU.getMenuText());
+      System.out.println(
+          Colors.YELLOW.getColor() + MenuText.CHOICE.getMenuText() + Colors.RESET.getColor());
+      int choice = scanner.nextInt();
+      scanner.nextLine();
+
+      switch (choice) {
+        case 1:
+          String randomFact = interestingFacts.getRandomFact();
+          System.out.println(Colors.YELLOW.getColor() + Separator.LONG_SIMPLE_LINE.getSeparator()
+              + Colors.RESET.getColor());
+          System.out.println(randomFact);
+          System.out.println(Colors.YELLOW.getColor() + Separator.LONG_SIMPLE_LINE.getSeparator()
+              + Colors.RESET.getColor());
+          break;
+        case 2:
+          System.out.println(Colors.YELLOW.getColor() + Separator.SIMPLE_LINE.getSeparator()
+              + Colors.RESET.getColor());
+          return;
+        default:
+          System.out.println(
+              Emoji.WRONG.getEmoji() + " " + Colors.RED.getColor() + Message.ERROR.getMessage()
+                  + Colors.RESET.getColor());
           break;
       }
     }
