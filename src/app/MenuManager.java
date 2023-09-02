@@ -1,5 +1,8 @@
 package app;
 
+import java.awt.Desktop;
+import java.io.File;
+import java.io.IOException;
 import texts.MenuText;
 import visual.Colors;
 import visual.Emoji;
@@ -84,7 +87,10 @@ public class MenuManager {
       System.out.println(Emoji.TWO.getEmoji() + " " + MenuText.DELETE_WORD.getMenuText());
       System.out.println(Emoji.THREE.getEmoji() + " " + MenuText.CHANGE_WORD.getMenuText());
       System.out.println(Emoji.FOUR.getEmoji() + " " + MenuText.SHOW_VOCAB.getMenuText());
-      System.out.println(Emoji.FIVE.getEmoji() + " " + MenuText.BACK_TO_MENU.getMenuText());
+      System.out.println(Emoji.FIVE.getEmoji() + " " + MenuText.RU_SORTING.getMenuText());
+      System.out.println(Emoji.SIX.getEmoji() + " " + MenuText.ESP_SORTING.getMenuText());
+      System.out.println(Emoji.SEVEN.getEmoji() + " " + MenuText.OPEN_FILE.getMenuText());
+      System.out.println(Emoji.EIGHT.getEmoji() + " " + MenuText.BACK_TO_MENU.getMenuText());
       System.out.println(Colors.YELLOW.getColor() + MenuText.CHOICE.getMenuText() + Colors.RESET.getColor());
       int choice = scanner.nextInt();
       switch (choice) {
@@ -104,6 +110,15 @@ public class MenuManager {
           vocabularyManager.printVocabulary();
           break;
         case 5:
+          vocabularyManager.saveToFileByRussian();
+          break;
+        case 6:
+          vocabularyManager.saveToFileBySpanish();
+          break;
+        case 7:
+          vocabularyManager.openVocabulary();
+          break;
+        case 8:
           System.out.println(Colors.YELLOW.getColor() + Separator.SIMPLE_LINE.getSeparator() + Colors.RESET.getColor());
           return;
         default:
@@ -113,4 +128,3 @@ public class MenuManager {
     }
   }
 }
-
