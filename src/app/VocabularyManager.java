@@ -1,18 +1,25 @@
 package app;
 
+import java.awt.Desktop;
+import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
-import java.util.*;
-
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.Map.Entry;
+import java.util.Scanner;
 import visual.Colors;
+import visual.Emoji;
 import visual.Separator;
 
 public class VocabularyManager {
 
   private Map<String, String> vocabulary;
-  private final String filePath = "res/MyVocabulary";
+  private final String filePath = "res/MyVocabulary.txt";
 
   public VocabularyManager() {
     vocabulary = new HashMap<>();
@@ -40,18 +47,31 @@ public class VocabularyManager {
     System.out.println(Colors.PURPLE.getColor() + Separator.DECORATION.getSeparator() + Colors.RESET.getColor());
   }
 
-  public void saveToFile() {
-    List<Map.Entry<String, String>> sortedVocabulary = new ArrayList<>(vocabulary.entrySet());
-    sortedVocabulary.sort(Comparator.comparing(Map.Entry::getKey));
+  public void saveToFileByRussian() {
+    List<Entry<String, String>> sortedVocabulary = new ArrayList<>(vocabulary.entrySet());
+    sortedVocabulary.sort(VocabularyComparators.byRussian());
+
     try (FileWriter writer = new FileWriter(filePath)) {
       for (Map.Entry<String, String> entry : sortedVocabulary) {
         writer.write(entry.getKey() + " - " + entry.getValue() + "\n");
       }
-      System.out.println(Colors.PURPLE.getColor() + "Словарик сохранен в файл " + filePath
-          + Colors.RESET.getColor());
+      System.out.println(Emoji.GO_AHEAD.getEmoji() + Colors.PURPLE.getColor() + " Обновили! Включён алфавитный порядок для русских слов: см. в файле " + filePath + Colors.RESET.getColor());
     } catch (IOException e) {
-      System.out.println(Colors.RED.getColor() + "Ошибка при записи в файл: " + e.getMessage()
-          + Colors.RESET.getColor());
+      System.out.println(Colors.RED.getColor() + "Ошибка при записи в файл: " + e.getMessage() + Colors.RESET.getColor());
+    }
+  }
+
+  public void saveToFileBySpanish() {
+    List<Map.Entry<String, String>> sortedVocabulary = new ArrayList<>(vocabulary.entrySet());
+    sortedVocabulary.sort(VocabularyComparators.bySpanish());
+
+    try (FileWriter writer = new FileWriter(filePath)) {
+      for (Map.Entry<String, String> entry : sortedVocabulary) {
+        writer.write(entry.getKey() + " - " + entry.getValue() + "\n");
+      }
+      System.out.println(Emoji.GO_AHEAD.getEmoji() + Colors.PURPLE.getColor() + " Обновили! Включён алфавитный порядок для испанских слов: см. в файле " + filePath + Colors.RESET.getColor());
+    } catch (IOException e) {
+      System.out.println(Colors.RED.getColor() + "Ошибка при записи в файл: " + e.getMessage() + Colors.RESET.getColor());
     }
   }
 
@@ -62,7 +82,7 @@ public class VocabularyManager {
     System.out.print("Введи перевод: ");
     String spanishWord = scanner.nextLine();
     addWord(russianWord, spanishWord);
-    saveToFile();
+    saveToFileByRussian();
   }
 
   public void removeWordFromVocabulary(Scanner scanner) {
@@ -71,7 +91,7 @@ public class VocabularyManager {
     String russianWord = scanner.nextLine();
     if (vocabulary.containsKey(russianWord)) {
       removeWord(russianWord);
-      saveToFile();
+      saveToFileByRussian();
       System.out.println(
           Colors.PURPLE.getColor() + "Слово удалено из словаря!" + Colors.RESET.getColor());
     } else {
@@ -81,22 +101,20 @@ public class VocabularyManager {
 
 
   public void replaceWordInVocabulary(Scanner scanner) {
-    System.out.print("Введите слово на русском, которое хотите заменить: ");
+    System.out.print("Введи слово на русском, которое хочешь заменить: ");
     scanner.nextLine();
     String russianWord = scanner.nextLine();
     if (!vocabulary.containsKey(russianWord)) {
       System.out.println("Слово не найдено в словаре.");
       return;
     }
-    System.out.print("Введите новое испанское слово: ");
+    System.out.print("Введи новое испанское слово: ");
     String newSpanishWord = scanner.nextLine();
     vocabulary.put(russianWord, newSpanishWord);
-    saveToFile();
+    saveToFileByRussian();
     System.out.println(
         Colors.PURPLE.getColor() + "Слово заменено в словаре!" + Colors.RESET.getColor());
   }
-
-
 
   private void loadFromFile() {
     try {
@@ -109,6 +127,20 @@ public class VocabularyManager {
       }
     } catch (IOException e) {
       System.out.println(Colors.RED.getColor() + "Не получилось загрузить данные!" + Colors.RESET.getColor());
+    }
+  }
+
+  void openVocabulary() {
+    try {
+      File file = new File("res/MyVocabulary.txt");
+      if (file.exists()) {
+        ProcessBuilder pb = new ProcessBuilder("notepad.exe", file.getAbsolutePath());
+        pb.start();
+      } else {
+        System.out.println("Файл не найден.");
+      }
+    } catch (IOException e) {
+      e.printStackTrace();
     }
   }
 }
