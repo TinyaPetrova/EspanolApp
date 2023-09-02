@@ -1,6 +1,5 @@
 package app;
 
-import java.awt.Desktop;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -15,6 +14,7 @@ import java.util.Scanner;
 import visual.Colors;
 import visual.Emoji;
 import visual.Separator;
+import vocabulary.VocabularyComparators;
 
 public class VocabularyManager {
 
