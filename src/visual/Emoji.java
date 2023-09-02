@@ -13,7 +13,8 @@ public enum Emoji {
   FOUR("4️⃣"),
   FIVE("5️⃣"),
   SIX("6️⃣"),
-  SEVEN("7️⃣");
+  SEVEN("7️⃣"),
+  EIGHT("8️⃣");
 
   private final String emoji;
 
