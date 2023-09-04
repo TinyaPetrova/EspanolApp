@@ -5,10 +5,9 @@ public enum Message {
   CHEERS("Привет!"),
   GREETING("Bienvenido в приложение для изучения испанского языка"),
   ERROR("Неверный выбор. Попробуй снова!"),
-  GREAT("Отличная работа!"),
-  WRONG("Не совсем верно!"),
-  GO_AHEAD("Вперёд!");
-
+  GREAT("Отличная работа! +1 балл"),
+  WRONG("Не совсем верно! Правильный ответ: "),
+  SCORE_PREFIX("Молодец! Вот твои баллы: ");
   private final String message;
 
   Message(String message) {
