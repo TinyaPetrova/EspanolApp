@@ -1,4 +1,4 @@
-package vocabulary;
+package app;
 
 import java.io.FileWriter;
 import java.io.IOException;

@@ -17,7 +17,6 @@ import java.util.Scanner;
 import visual.Colors;
 import visual.Emoji;
 import visual.Separator;
-import vocabulary.VocabularyComparators;
 
 public class VocabularyManager {
 

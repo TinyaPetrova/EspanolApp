@@ -1,4 +1,4 @@
-package vocabulary;
+package app;
 
 import java.util.Comparator;
 import java.util.Map;
