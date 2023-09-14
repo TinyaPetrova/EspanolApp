@@ -18,6 +18,11 @@ import visual.Colors;
 import visual.Emoji;
 import visual.Separator;
 
+/**
+ * The VocabularyManager class represents a manager for a user's vocabulary in the application
+ * It allows users to add, remove, replace, and view words and their translations (including opening
+ * the vocabulary file), as well as manage scores
+ */
 public class VocabularyManager {
 
   private Map<String, String> vocabulary;
@@ -25,30 +30,56 @@ public class VocabularyManager {
   private final String filePath = "res/MyVocabulary.txt";
   private int score = 0;
 
+  /**
+   * Constructor for VocabularyManager, initializing the vocabulary and loading data from a file if available.
+   */
   public VocabularyManager() {
     vocabulary = new HashMap<>();
     wordOrder = new ArrayList<>();
     loadFromFile();
   }
 
+  /**
+   * Enum for the word types (Russian and Spanish) for vocabulary operations
+   */
   public enum WordType {
     RUSSIAN,
     SPANISH
   }
 
+  /**
+   * Method adds a word and its translation to the vocabulary
+   *
+   * @param russian Russian word
+   * @param spanish Spanish word
+   */
   public void addWord(String russian, String spanish) {
     vocabulary.put(russian, spanish);
     wordOrder.add(russian);
   }
 
+  /**
+   * Method removes a word pair from the vocabulary by its Russian word
+   *
+   * @param russian Russian word to be removed
+   */
   public void removeWord(String russian) {
     vocabulary.remove(russian);
   }
 
+  /**
+   * Method replaces the translation of a Russian word in the vocabulary.
+   *
+   * @param russian Russian word to be replaced
+   * @param newSpanish new translation in Spanish
+   */
   public void replaceWord(String russian, String newSpanish) {
     vocabulary.put(russian, newSpanish);
   }
 
+  /**
+   * Method prints the vocabulary, displaying the Russian words and their Spanish translations
+   */
   public void printVocabulary() {
     System.out.println(Colors.YELLOW.getColor() + "Вот последние записанные тобой слова:" + Colors.RESET.getColor());
     System.out.println(Colors.PURPLE.getColor() + Separator.DECORATION.getSeparator() + Colors.RESET.getColor());
@@ -59,6 +90,9 @@ public class VocabularyManager {
     System.out.println(Colors.PURPLE.getColor() + Separator.DECORATION.getSeparator() + Colors.RESET.getColor());
   }
 
+  /**
+   * Method saves the vocabulary to a file, sorted by Russian words
+   */
   public void saveToFileByRussian() {
     List<Entry<String, String>> sortedVocabulary = new ArrayList<>(vocabulary.entrySet());
     sortedVocabulary.sort(VocabularyComparators.byRussian());
@@ -72,6 +106,9 @@ public class VocabularyManager {
     }
   }
 
+  /**
+   * Method saves the vocabulary to a file, sorted by Spanish words
+   */
   public void saveToFileBySpanish() {
     List<Map.Entry<String, String>> sortedVocabulary = new ArrayList<>(vocabulary.entrySet());
     sortedVocabulary.sort(VocabularyComparators.bySpanish());
@@ -85,6 +122,11 @@ public class VocabularyManager {
     }
   }
 
+  /**
+   * Method adds a word and its translation to the vocabulary
+   *
+   * @param scanner scanner for user's input
+   */
   void addWordToVocabulary(Scanner scanner) {
     scanner.nextLine();
     String russianWord;
@@ -107,7 +149,11 @@ public class VocabularyManager {
     saveToFileByRussian();
   }
 
-
+  /**
+   * Method removes a word and its translation from the vocabulary by its Russian word
+   *
+   * @param scanner scanner for user's input
+   */
   public void removeWordFromVocabulary(Scanner scanner) {
     scanner.nextLine();
     System.out.print("Введи слово на русском, пару с которым хочешь удалить: ");
@@ -122,6 +168,11 @@ public class VocabularyManager {
     }
   }
 
+  /**
+   * Method replaces the translation of a Russian word in the vocabulary
+   *
+   * @param scanner scanner for user's input
+   */
   public void replaceWordInVocabulary(Scanner scanner) {
     System.out.print("Введи слово на русском, перевод которого хочешь заменить: ");
     scanner.nextLine();
@@ -138,6 +189,12 @@ public class VocabularyManager {
         Colors.PURPLE.getColor() + "Слово заменено в словаре!" + Colors.RESET.getColor());
   }
 
+  /**
+   * Method checks if a given text contains Cyrillic characters
+   *
+   * @param text text to be checked
+   * @return true if the text contains Cyrillic characters, otherwise false
+   */
   public boolean containsCyrillic(String text) {
     for (char c : text.toCharArray()) {
       if (Character.UnicodeBlock.of(c) == Character.UnicodeBlock.CYRILLIC) {
@@ -147,6 +204,12 @@ public class VocabularyManager {
     return false;
   }
 
+  /**
+   * Method checks if a given text contains Latin characters
+   *
+   * @param text text to be checked
+   * @return true if the text contains Latin characters, otherwise false
+   */
   public boolean containsLatin(String text) {
     for (char c : text.toCharArray()) {
       if (Character.UnicodeBlock.of(c) == Character.UnicodeBlock.BASIC_LATIN) {
@@ -156,6 +219,9 @@ public class VocabularyManager {
     return false;
   }
 
+  /**
+   * Method loads data from a file to initialize the vocabulary
+   */
   private void loadFromFile() {
     try {
       List<String> lines = Files.readAllLines(Paths.get(filePath));
@@ -170,6 +236,9 @@ public class VocabularyManager {
     }
   }
 
+  /**
+   * Method opens the vocabulary file in the text editor
+   */
   void openVocabulary() {
     try {
       File file = new File("res/MyVocabulary.txt");
@@ -184,6 +253,12 @@ public class VocabularyManager {
     }
   }
 
+  /**
+   * Method gets a random word from the vocabulary of the specified word type (Russian or Spanish)
+   *
+   * @param wordType type of word for training (Russian or Spanish).
+   * @return random word of the specified type
+   */
   public String getRandomWord(WordType wordType) {
     if (vocabulary.isEmpty()) {
       System.out.println(Emoji.WRONG.getEmoji() + Colors.RED.getColor() + " В словаре нет слов!" + Colors.RESET.getColor());
@@ -195,6 +270,13 @@ public class VocabularyManager {
     return words.get(randomIndex);
   }
 
+  /**
+   * Method gets the translation of a word in the specified word type (Russian or Spanish)
+   *
+   * @param word translation for training
+   * @param wordType type of word (Russian or Spanish) translation
+   * @return translation of the word in the specified type
+   */
   public String getTranslation(String word, WordType wordType) {
     if (wordType.equals(WordType.RUSSIAN)) {
       return vocabulary.get(word);
@@ -204,6 +286,13 @@ public class VocabularyManager {
     return "Перевод не найден";
   }
 
+  /**
+   * Method gets the key (Russian word) associated with a given value (Spanish word) in the map
+   *
+   * @param map map containing words pairs
+   * @param value value (Spanish word) which helps to find the corresponding key
+   * @return key (Russian word) associated with the specified value
+   */
   private String getKeyByValue(Map<String, String> map, String value) {
     for (Map.Entry<String, String> entry : map.entrySet()) {
       if (entry.getValue().equals(value)) {
@@ -213,6 +302,11 @@ public class VocabularyManager {
     return "Перевод не найден";
   }
 
+  /**
+   * Method saves the current score to a file
+   *
+   * @param score score to be saved
+   */
   private void saveScore(int score) {
     try (FileWriter writer = new FileWriter("res/MyScore.txt")) {
       writer.write(Integer.toString(score));
@@ -222,6 +316,9 @@ public class VocabularyManager {
     }
   }
 
+  /**
+   * Increments the user's score and saves it to a file
+   */
   void incrementScore() {
     score++;
     saveScore(score);
@@ -233,8 +330,10 @@ public class VocabularyManager {
     }
   }
 
+  /**
+   * Loads the user's score from a file
+   */
   public void loadScoreFromFile() {
-
     try {
       List<String> lines = Files.readAllLines(Paths.get("res/MyScore.txt"));
       if (!lines.isEmpty()) {

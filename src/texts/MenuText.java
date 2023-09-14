@@ -1,11 +1,12 @@
 package texts;
 
+/**
+ * The MenuText enum contains text messages for various menu options in the application
+ */
 public enum MenuText {
   CHOICE("Выбери действие: "),
-  EXERCISES("Упражнения: грамматика и лексика"),
   VOCABULARY("Мой словарик"),
   VOCAB_TRAININGS("Словарные тренировки"),
-  QUIZ("Тесты"),
   ACHIEVEMENTS("Мои достижения"),
   RANDOM_FACTS("Хочу узнать что-нибудь интересное об Испании!"),
   ADD_WORD("Добавить слово"),
@@ -23,10 +24,20 @@ public enum MenuText {
 
   private final String menuText;
 
+  /**
+   * Constructor for MenuText enum constant with the specified menu text
+   *
+   * @param menuText text associated with the menu option
+   */
   MenuText(String menuText) {
     this.menuText = menuText;
   }
 
+  /**
+   * Getter for the menu text associated with the enum constant
+   *
+   * @return The menu text.
+   */
   public String getMenuText() {
     return menuText;
   }

@@ -7,14 +7,26 @@ import texts.Message;
 import visual.Colors;
 import visual.Emoji;
 
+/**
+ * The VocabularyTraining class manages vocabulary training sessions. It provides methods for
+ * practicing translation between Russian and Spanish words
+ */
 public class VocabularyTraining {
 
   private final VocabularyManager vocabularyManager;
 
+  /**
+   * Constructor for VocabularyTraining with a reference to a VocabularyManager
+   *
+   * @param vocabularyManager VocabularyManager instance used for vocabulary access
+   */
   public VocabularyTraining(VocabularyManager vocabularyManager) {
     this.vocabularyManager = vocabularyManager;
   }
 
+  /**
+   * Static sets of positive and negative answers commonly used for user's input confirmation
+   */
   private static final Set<String> POSITIVE_ANSWERS = new HashSet<>();
   private static final Set<String> NEGATIVE_ANSWERS = new HashSet<>();
 
@@ -30,6 +42,9 @@ public class VocabularyTraining {
     NEGATIVE_ANSWERS.add("n");
   }
 
+  /**
+   * Method runs a training session where the user translates Russian words to Spanish
+   */
   public void runRussianToSpanishTraining() {
     Scanner scanner = new Scanner(System.in);
     while (true) {
@@ -49,6 +64,9 @@ public class VocabularyTraining {
     }
   }
 
+  /**
+   * Method runs a training session where the user translates Spanish words to Russian
+   */
   public void runSpanishToRussianTraining() {
     Scanner scanner = new Scanner(System.in);
     while (true) {
@@ -68,6 +86,12 @@ public class VocabularyTraining {
     }
   }
 
+  /**
+   * Method for asking the user if they want to continue the vocabulary training
+   *
+   * @param scanner scanner for user's input
+   * @return true if the user wants to continue training, otherwise false
+   */
   private boolean continueTraining(Scanner scanner) {
     System.out.println("Продолжим тренировку? [Да/Нет]");
     String continueTraining = scanner.nextLine().toLowerCase();

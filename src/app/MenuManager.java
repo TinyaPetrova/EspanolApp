@@ -7,6 +7,11 @@ import texts.Message;
 import java.util.Scanner;
 import visual.Separator;
 
+/**
+ * The MenuManager class manages the main menu and submenus of the Spanish learning application
+ * It provides options to access vocabulary, vocabulary training, achievements, and random facts about Spain
+ * Users can navigate through these options and interact with the application's features
+ */
 public class MenuManager {
 
   private VocabularyManager vocabularyManager;
@@ -14,6 +19,11 @@ public class MenuManager {
   private VocabularyTraining vocabularyTraining;
   private Scanner scanner;
 
+  /**
+   * Constructor for MenuManager with the specified facts file path
+   *
+   * @param factsFilePath the path to the file containing interesting facts about Spain
+   */
   public MenuManager(String factsFilePath) {
     vocabularyManager = new VocabularyManager();
     interestingFacts = new InterestingFacts(factsFilePath);
@@ -21,6 +31,10 @@ public class MenuManager {
     scanner = new Scanner(System.in);
   }
 
+  /**
+   * Method runs the main menu of the application
+   * Users can choose options to access different features of the application
+   */
   public void runMainMenu() {
     System.out.println(Emoji.CHEERS.getEmoji() + " " + Message.CHEERS.getMessage());
     System.out.println(Message.GREETING.getMessage());
@@ -46,22 +60,23 @@ public class MenuManager {
         if (choice >= 1 && choice <= 5) {
           switch (choice) {
             case 1:
-              // словарик
+              // Vocabulary
               runVocabularySubMenu();
               break;
             case 2:
-              // словарные тренировки
+              // Vocabulary training
               runVocabularyTrainingSubMenu();
               break;
             case 3:
-              // достижения
+              // Achievements
               vocabularyManager.loadScoreFromFile();
               break;
             case 4:
-              // факты об Испании
+              // Facts about Spain
               runRandomFactsSubMenu();
               break;
             case 5:
+              // Exit
               System.out.println(
                   Emoji.CHEERS.getEmoji() + Colors.YELLOW.getColor() + " " + MenuText.BYE.getMenuText()
                       + Colors.RESET.getColor());
@@ -81,6 +96,10 @@ public class MenuManager {
     }
   }
 
+  /**
+   * Method runs the submenu for managing vocabulary
+   * Users can add, delete, modify, and view vocabulary words and perform sorting operations
+   */
   private void runVocabularySubMenu() {
     System.out.println(
         Colors.YELLOW.getColor() + Separator.UPPER_LINE.getSeparator() + Colors.RESET.getColor());
@@ -104,30 +123,38 @@ public class MenuManager {
       if (scanner.hasNextInt()) {
         int choice = scanner.nextInt();
         switch (choice) {
+          // Add words
           case 1:
             vocabularyManager.addWordToVocabulary(
                 scanner);
             break;
+            // Remove words
           case 2:
             vocabularyManager.removeWordFromVocabulary(
                 scanner);
             break;
+            // Replace words
           case 3:
             vocabularyManager.replaceWordInVocabulary(
                 scanner);
             break;
           case 4:
+            // Show recent changes in the vocabulary
             vocabularyManager.printVocabulary();
             break;
           case 5:
+            // Turn on alphabet order for Russian words
             vocabularyManager.saveToFileByRussian();
             break;
+            // Turn on alphabet order for Spanish words
           case 6:
             vocabularyManager.saveToFileBySpanish();
             break;
+            // Open vocabulary file (including all changes history)
           case 7:
             vocabularyManager.openVocabulary();
             break;
+            // Return to main menu
           case 8:
             System.out.println(Colors.YELLOW.getColor() + Separator.SIMPLE_LINE.getSeparator()
                 + Colors.RESET.getColor());
@@ -147,6 +174,10 @@ public class MenuManager {
     }
   }
 
+  /**
+   * Runs the submenu for accessing random facts about Spain
+   * Users can get random facts and after that return to the main menu
+   */
   private void runRandomFactsSubMenu() {
     System.out.println(
         Colors.YELLOW.getColor() + Separator.UPPER_LINE.getSeparator() + Colors.RESET.getColor());
@@ -166,6 +197,7 @@ public class MenuManager {
         scanner.nextLine();
 
         switch (choice) {
+          // Get some random fact
           case 1:
             String randomFact = interestingFacts.getRandomFact();
             System.out.println(Colors.YELLOW.getColor() + Separator.LONG_SIMPLE_LINE.getSeparator()
@@ -174,6 +206,7 @@ public class MenuManager {
             System.out.println(Colors.YELLOW.getColor() + Separator.LONG_SIMPLE_LINE.getSeparator()
                 + Colors.RESET.getColor());
             break;
+            // Return to main menu
           case 2:
             System.out.println(Colors.YELLOW.getColor() + Separator.SIMPLE_LINE.getSeparator()
                 + Colors.RESET.getColor());
@@ -193,6 +226,10 @@ public class MenuManager {
     }
   }
 
+  /**
+   * Runs the submenu for vocabulary training
+   * Users can choose between Spanish-to-Russian and Russian-to-Spanish training modes
+   */
   private void runVocabularyTrainingSubMenu() {
     System.out.println(
         Colors.YELLOW.getColor() + Separator.UPPER_LINE.getSeparator() + Colors.RESET.getColor());
@@ -214,12 +251,15 @@ public class MenuManager {
         scanner.nextLine();
 
         switch (choice) {
+          // Choose Spanish-to-Russian training mode
           case 1:
             vocabularyTraining.runSpanishToRussianTraining();
             break;
+            // Choose Russian-to-Spanish training mode
           case 2:
             vocabularyTraining.runRussianToSpanishTraining();
             break;
+            // Return to main menu
           case 3:
             System.out.println(Colors.YELLOW.getColor() + Separator.SIMPLE_LINE.getSeparator()
                 + Colors.RESET.getColor());
