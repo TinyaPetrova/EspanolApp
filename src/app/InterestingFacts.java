@@ -32,7 +32,7 @@ public class InterestingFacts {
 
   public String getRandomFact() {
     if (facts.isEmpty()) {
-      return Emoji.WRONG.getEmoji() + Colors.RED.getColor() + " Ты уже знаешь все факты, которые мы собрали для тебя!" + Colors.RESET.getColor();
+      return Emoji.WRONG.getEmoji() + Colors.RED.getColor() + " На этом всё! Ты уже знаешь все факты, которые мы собрали для тебя" + Colors.RESET.getColor();
     }
     Random random = new Random();
     int randomIndex = random.nextInt(facts.size());
