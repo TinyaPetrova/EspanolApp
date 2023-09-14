@@ -21,11 +21,13 @@ import visual.Separator;
 public class VocabularyManager {
 
   private Map<String, String> vocabulary;
+  private List<String> wordOrder;
   private final String filePath = "res/MyVocabulary.txt";
   private int score = 0;
 
   public VocabularyManager() {
     vocabulary = new HashMap<>();
+    wordOrder = new ArrayList<>();
     loadFromFile();
   }
 
@@ -36,6 +38,7 @@ public class VocabularyManager {
 
   public void addWord(String russian, String spanish) {
     vocabulary.put(russian, spanish);
+    wordOrder.add(russian);
   }
 
   public void removeWord(String russian) {
@@ -47,10 +50,11 @@ public class VocabularyManager {
   }
 
   public void printVocabulary() {
-    System.out.println(Colors.YELLOW.getColor() + "Вот твой словарик:" + Colors.RESET.getColor());
+    System.out.println(Colors.YELLOW.getColor() + "Вот последние записанные тобой слова:" + Colors.RESET.getColor());
     System.out.println(Colors.PURPLE.getColor() + Separator.DECORATION.getSeparator() + Colors.RESET.getColor());
-    for (Map.Entry<String, String> entry : vocabulary.entrySet()) {
-      System.out.println(entry.getKey() + " - " + entry.getValue());
+    for (String russian : wordOrder) {
+      String spanish = vocabulary.get(russian);
+      System.out.println(russian + " - " + spanish);
     }
     System.out.println(Colors.PURPLE.getColor() + Separator.DECORATION.getSeparator() + Colors.RESET.getColor());
   }
@@ -83,13 +87,26 @@ public class VocabularyManager {
 
   void addWordToVocabulary(Scanner scanner) {
     scanner.nextLine();
-    System.out.print("Введи слово на русском: ");
-    String russianWord = scanner.nextLine();
-    System.out.print("Введи перевод: ");
-    String spanishWord = scanner.nextLine();
+    String russianWord;
+    do {
+      System.out.print("Введи слово на русском: ");
+      russianWord = scanner.nextLine();
+      if (!containsCyrillic(russianWord)) {
+        System.out.println(Emoji.WRONG.getEmoji() + Colors.RED.getColor() + " Ошибка: поменяй раскладку на клавиатуре!" + Colors.RESET.getColor());
+      }
+    } while (!containsCyrillic(russianWord));
+    String spanishWord;
+    do {
+      System.out.print("Введи перевод: ");
+      spanishWord = scanner.nextLine();
+      if (!containsLatin(spanishWord)) {
+        System.out.println(Emoji.WRONG.getEmoji() + Colors.RED.getColor() + " Ошибка: поменяй раскладку на клавиатуре!" + Colors.RESET.getColor());
+      }
+    } while (!containsLatin(spanishWord));
     addWord(russianWord, spanishWord);
     saveToFileByRussian();
   }
+
 
   public void removeWordFromVocabulary(Scanner scanner) {
     scanner.nextLine();
@@ -98,8 +115,8 @@ public class VocabularyManager {
     if (vocabulary.containsKey(russianWord)) {
       removeWord(russianWord);
       saveToFileByRussian();
-      System.out.println(
-          Colors.PURPLE.getColor() + "Удалено из словаря!" + Colors.RESET.getColor());
+      wordOrder.remove(russianWord);
+      System.out.println(Colors.PURPLE.getColor() + "Удалено из словаря!" + Colors.RESET.getColor());
     } else {
       System.out.println(Colors.RED.getColor() + "Такого слова нет!" + Colors.RESET.getColor());
     }
@@ -119,6 +136,24 @@ public class VocabularyManager {
     saveToFileByRussian();
     System.out.println(
         Colors.PURPLE.getColor() + "Слово заменено в словаре!" + Colors.RESET.getColor());
+  }
+
+  public boolean containsCyrillic(String text) {
+    for (char c : text.toCharArray()) {
+      if (Character.UnicodeBlock.of(c) == Character.UnicodeBlock.CYRILLIC) {
+        return true;
+      }
+    }
+    return false;
+  }
+
+  public boolean containsLatin(String text) {
+    for (char c : text.toCharArray()) {
+      if (Character.UnicodeBlock.of(c) == Character.UnicodeBlock.BASIC_LATIN) {
+        return true;
+      }
+    }
+    return false;
   }
 
   private void loadFromFile() {
@@ -176,18 +211,6 @@ public class VocabularyManager {
       }
     }
     return "Перевод не найден";
-  }
-
-  private int getScore() {
-    try {
-      List<String> lines = Files.readAllLines(Paths.get("res/MyScore.txt"));
-      if (!lines.isEmpty()) {
-        return Integer.parseInt(lines.get(0).trim());
-      }
-    } catch (IOException e) {
-      System.out.println(Colors.RED.getColor() + "Ошибка при чтении файла баллов: " + e.getMessage() + Colors.RESET.getColor());
-    }
-    return 0;
   }
 
   private void saveScore(int score) {
