@@ -4,7 +4,7 @@
 **EspanolApp** &mdash; *Spanish vocabulary learning Java app*.
 
 ## Project description
-The Vocabulary Learning App is a Java-based application designed to help users learn and practice 
+This spanish vocabulary learning app is a Java-based application designed to help users learn and practice 
 Russian-Spanish word pairs. Users can:
 - add / remove / replace words in their vocabulary;
 - engage in vocabulary training exercises to test their knowledge. 
@@ -44,7 +44,7 @@ The project has a modular structure with separate packages for different compone
 - JUnit 5 is used for unit testing. 
 - **VocabularyManager** is tested in the *VocabularyManagerTests*.
 - **VocabularyTraining** is tested in the *VocabularyTrainingTests*.
-- 
+- **VocabularyComparators** is tested in the *VocabularyComparatorsTests*
 
 
 
