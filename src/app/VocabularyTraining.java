@@ -92,7 +92,7 @@ public class VocabularyTraining {
    * @param scanner scanner for user's input
    * @return true if the user wants to continue training, otherwise false
    */
-  private boolean continueTraining(Scanner scanner) {
+  public boolean continueTraining(Scanner scanner) {
     System.out.println("Продолжим тренировку? [Да/Нет]");
     String continueTraining = scanner.nextLine().toLowerCase();
     return POSITIVE_ANSWERS.contains(continueTraining) && NEGATIVE_ANSWERS.contains(continueTraining);
