@@ -3,7 +3,7 @@
 ## Project name
 **EspanolApp** &mdash; *Spanish vocabulary learning Java app*.
 
-## Project Description
+## Project description
 The Vocabulary Learning App is a Java-based application designed to help users learn and practice 
 Russian-Spanish word pairs. Users can:
 - add / remove / replace words in their vocabulary;
@@ -12,14 +12,14 @@ Russian-Spanish word pairs. Users can:
 The app provides a range of features to enhance the vocabulary learning experience, including 
 sorting words alphabetically and providing random facts about Spain.
 
-## Technical Requirements
+## Technical requirements
 - Java version: Oracle OpenJDK version 19.0.2
 - Dependencies: JUnit 5.8.1
 
 ### Entry point of the application
 AppRunner
 
-### Necessary Files and Resources
+### Necessary files and resources
 - Vocabulary data is stored in a text file located at res/MyVocabulary.txt
 - Random facts about Spain are loaded from the file res/RandomFacts.txt
 
