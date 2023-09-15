@@ -39,7 +39,7 @@ The project has a modular structure with separate packages for different compone
 **VocabularyTraining** to conduct exercises and assess user's performance.
 - **VocabularyManager** interacts with the **InterestingFacts** class to provide random facts.
 
-## Testing
+## Testing (in progress)
 - Test classes are located in the 'test' package. 
 - JUnit 5 is used for unit testing. 
 - **VocabularyManager** is tested in the *VocabularyManagerTests*.
