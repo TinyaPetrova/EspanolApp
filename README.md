@@ -1,25 +1,50 @@
-# Приложение для изучения испанского языка EspanolApp
-*Текст*
-**Текст**
-'Code'
-&mdash; (тире)
+# Spanish Vocabulary Learning Java App "Hablamos Espanol!"
 
-# Название проекта
-- Пара абзацев с описанием идее проекта
+## Project name
+**EspanolApp** &mdash; *Spanish vocabulary learning Java app*.
 
-## Технические требования
-- Версия языка (java 8, 11, 17, 20...)
-- Зависимости **JUnit5**, указать конкретную версию
-- Точка входа (с какого файла всё начинается, в каком файле лежит мейн)
-- Необходимые для работы файлы, пароли, если есть...
+## Project Description
+The Vocabulary Learning App is a Java-based application designed to help users learn and practice 
+Russian-Spanish word pairs. Users can:
+- add / remove / replace words in their vocabulary;
+- engage in vocabulary training exercises to test their knowledge. 
 
-## Общее описание структуры
-- Структура классов (именно классов)
-- Структура интерфейсов:
-описать, что и зачем
-- Связь между ними
-- Тесты (в какой папке или каких классах)
-какой класс для какого класса, без подробностей. просто где что лежит
+The app provides a range of features to enhance the vocabulary learning experience, including 
+sorting words alphabetically and providing random facts about Spain.
+
+## Technical Requirements
+- Java version: Oracle OpenJDK version 19.0.2
+- Dependencies: JUnit 5.8.1
+
+### Entry point of the application
+AppRunner
+
+### Necessary Files and Resources
+- Vocabulary data is stored in a text file located at res/MyVocabulary.txt
+- Random facts about Spain are loaded from the file res/RandomFacts.txt
+
+## General structure description
+The project has a modular structure with separate packages for different components.
+
+### Class structure
+- **AppRunner**: the entry point of the application.
+- **MenuManager**: manages the main menu and user's interactions.
+- **VocabularyManager**: responsible for vocabulary management, storage, and training.
+- **VocabularyTraining**: manages the vocabulary training exercises.
+- **InterestingFacts**: provides random facts about Spain.
+
+### Relationship between classes
+- **AppRunner** initializes the **MenuManager**, which, in turn, interacts with other components.
+- **MenuManager** uses the **VocabularyManager** to manage vocabulary-related operations and the 
+**VocabularyTraining** to conduct exercises and assess user's performance.
+- **VocabularyManager** interacts with the **InterestingFacts** class to provide random facts.
+
+## Testing
+- Test classes are located in the 'test' package. 
+- JUnit 5 is used for unit testing. 
+- **VocabularyManager** is tested in the *VocabularyManagerTests*.
+- **VocabularyTraining** is tested in the *VocabularyTrainingTests*.
+- 
 
 
 
