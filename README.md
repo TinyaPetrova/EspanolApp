@@ -1,4 +1,4 @@
-# Spanish Vocabulary Learning Java App "Hablamos Espanol!"
+# Spanish Vocabulary Learning Java App <br/> "Hablamos Espanol!"
 
 ## Project name
 **EspanolApp** &mdash; *Spanish vocabulary learning Java app*.
