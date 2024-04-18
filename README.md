@@ -43,6 +43,7 @@ The project has a modular structure with separate packages for different compone
 - Test classes are located in the 'test' package. 
 - JUnit 5 is used for unit testing. 
 - **VocabularyManager** is tested in the *VocabularyManagerTests*.
+- Work on tests is still in progress.
 - **VocabularyTraining** is tested in the *VocabularyTrainingTests*.
 - **VocabularyComparators** is tested in the *VocabularyComparatorsTests*
 
