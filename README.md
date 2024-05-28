@@ -4,7 +4,7 @@
 **EspanolApp** &mdash; *Spanish vocabulary learning Java app*.
 
 ## Project description
-This spanish vocabulary learning app is a Java-based application designed to help users learn and practice 
+This spanish vocabulary learning app is a Java-based console application designed to help users learn and practice 
 Russian-Spanish word pairs. Users can:
 - add / remove / replace words in their vocabulary;
 - engage in vocabulary training exercises to test their knowledge. 
