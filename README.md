@@ -1,7 +1,7 @@
-# Spanish Vocabulary Learning Java App <br/> "Hablamos Espanol!"
+# Spanish Vocabulary Learning Java Console App
 
 ## Project name
-**EspanolApp** &mdash; *Spanish vocabulary learning Java app*.
+**EspanolApp** &mdash; *Spanish vocabulary learning Java console app*.
 
 ## Project description
 This spanish vocabulary learning app is a Java-based console application designed to help users learn and practice 
