@@ -21,14 +21,14 @@ sorting words alphabetically and providing random facts about Spain.
 AppRunner
 
 ### How to use the app:
-1. Clone the repository
+1. Clone the repository and reach the created folder in the terminal using bash commands:
 
-git clone <repository_url> HablamosEspanol
-cd HablamosEspanol
+  **git clone https://github.com/TinyaPetrova/EspanolApp.git HablamosEspanol**
+  **cd HablamosEspanol**
 
 2. Compile and run the program:
 
-javac AppRunner.java && java AppRunner
+  **javac AppRunner.java && java AppRunner**
 
 ### Necessary files and resources
 - Vocabulary data is stored in a text file located at res/MyVocabulary.txt
