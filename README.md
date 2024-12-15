@@ -23,12 +23,12 @@ AppRunner
 ### How to use the app:
 1. Clone the repository and reach the created folder in the terminal using bash commands:
 
-  `git clone https://github.com/TinyaPetrova/EspanolApp.git HablamosEspanol
+   `git clone https://github.com/TinyaPetrova/EspanolApp.git HablamosEspanol
    cd HablamosEspanol`
 
-2. Compile and run the program:
+3. Compile and run the program:
 
-  ` javac -d out $(find src -name "*.java") && java -cp out app.AppRunner`
+   `javac -d out $(find src -name "*.java") && java -cp out app.AppRunner`
   
 Note:
 Due to the use of special characters and emoji, the display of information in the console may be different depending on the shell you are using.
