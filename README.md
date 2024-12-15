@@ -29,6 +29,7 @@ AppRunner
 2. Compile and run the program:
 
   ` javac -d out $(find src -name "*.java") && java -cp out app.AppRunner`
+  
 Note:
 Due to the use of special characters and emoji, the display of information in the console may be different depending on the shell you are using.
 
