@@ -6,8 +6,9 @@
 ## Project description
 This spanish vocabulary learning app is a Java-based console application designed to help users learn and practice 
 Russian-Spanish word pairs. Users can:
-- add / remove / replace words in their vocabulary;
-- engage in vocabulary training exercises to test their knowledge. 
+- add / remove / replace words in their vocabulary which are stored in the txt file;
+- engage in vocabulary training exercises to test their knowledge;
+- get random facts about Spain.
 
 The app provides a range of features to enhance the vocabulary learning experience, including 
 sorting words alphabetically and providing random facts about Spain.
@@ -18,6 +19,16 @@ sorting words alphabetically and providing random facts about Spain.
 
 ### Entry point of the application
 AppRunner
+
+### How to use the app:
+1. Clone the repository
+
+git clone <repository_url> HablamosEspanol
+cd HablamosEspanol
+
+2. Compile and run the program:
+
+javac AppRunner.java && java AppRunner
 
 ### Necessary files and resources
 - Vocabulary data is stored in a text file located at res/MyVocabulary.txt
