@@ -23,8 +23,8 @@ AppRunner
 ### How to use the app:
 1. Clone the repository and reach the created folder in the terminal using bash commands:
 
-   `git clone https://github.com/TinyaPetrova/EspanolApp.git HablamosEspanol
-   cd HablamosEspanol`
+   `git clone https://github.com/TinyaPetrova/EspanolApp.git HablamosEspanol`
+   `cd HablamosEspanol`
 
 3. Compile and run the program:
 
