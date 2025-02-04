@@ -21,9 +21,11 @@ sorting words alphabetically and providing random facts about Spain.
 AppRunner
 
 ### How to use the app:
-1. Clone the repository and reach the created folder in the terminal using bash commands:
+1. Clone the repository in the terminal using bash command:
 
    `git clone https://github.com/TinyaPetrova/EspanolApp.git HablamosEspanol`
+
+2. Reach the created folder:
 
    `cd HablamosEspanol`
 
