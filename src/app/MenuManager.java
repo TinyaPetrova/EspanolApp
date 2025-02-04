@@ -182,7 +182,7 @@ public class MenuManager {
     System.out.println(
         Colors.YELLOW.getColor() + Separator.UPPER_LINE.getSeparator() + Colors.RESET.getColor());
     System.out.println(
-        Emoji.IDEA.getEmoji() + " Here you are! One of the most exciting facts is already here :)");
+        Emoji.IDEA.getEmoji() + " One of the most exciting facts is almost here :)");
     System.out.println(
         Colors.YELLOW.getColor() + Separator.DOWN_LINE.getSeparator() + Colors.RESET.getColor());
 
