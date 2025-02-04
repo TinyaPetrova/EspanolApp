@@ -94,6 +94,6 @@ public class VocabularyTraining {
   public boolean continueTraining(Scanner scanner) {
     System.out.println("Let's continue? [Yes/No]");
     String continueTraining = scanner.nextLine().toLowerCase();
-    return POSITIVE_ANSWERS.contains(continueTraining) && NEGATIVE_ANSWERS.contains(continueTraining);
+    return POSITIVE_ANSWERS.contains(continueTraining) || NEGATIVE_ANSWERS.contains(continueTraining);
   }
 }
