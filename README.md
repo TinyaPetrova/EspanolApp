@@ -29,7 +29,7 @@ AppRunner
 
    `cd HablamosEspanol`
 
-3. Compile and run the program.
+3. Compile and run the program.\n
    For Windows (MinGW/MSYS2, Git Bash), Linux (Ubuntu/Debian/Fedora/Arch),
    MacOS:
 
