@@ -131,14 +131,22 @@ public class VocabularyManager {
     scanner.nextLine();
     String englishWord;
     do {
-      System.out.print("Enter an English word: ");
+      System.out.print("Enter an English word\n(or press 0 to go back): ");
       englishWord = scanner.nextLine();
+      if (englishWord.equals("0")) {
+        System.out.println(Colors.RED.getColor() + "Not today! Let's go back!" + Colors.RESET.getColor());
+        return;
+      }
     } while (englishWord.isEmpty());
 
     String spanishWord;
     do {
-      System.out.print("Enter the translation: ");
+      System.out.print("Enter the translation\n(or press 0 to go back): ");
       spanishWord = scanner.nextLine();
+      if (spanishWord.equals("0")) {
+        System.out.println(Colors.RED.getColor() + "Not today! Let's go back!" + Colors.RESET.getColor());
+        return;
+      }
     } while (spanishWord.isEmpty());
 
     addWord(englishWord, spanishWord);
@@ -152,7 +160,7 @@ public class VocabularyManager {
    */
   public void removeWordFromVocabulary(Scanner scanner) {
     scanner.nextLine();
-    System.out.print("Enter an English word, which you want to delete: ");
+    System.out.print("Enter an English word, which you want to delete\n(press 0 if you changed your mind): ");
     String englishWord = scanner.nextLine();
     if (vocabulary.containsKey(englishWord)) {
       removeWord(englishWord);
@@ -160,7 +168,7 @@ public class VocabularyManager {
       wordOrder.remove(englishWord);
       System.out.println(Colors.PURPLE.getColor() + "Deleted successfully!" + Colors.RESET.getColor());
     } else {
-      System.out.println(Colors.RED.getColor() + "Didn't find this word :(" + Colors.RESET.getColor());
+      System.out.println(Emoji.WRONG.getEmoji() + Colors.RED.getColor() + "Something went wrong... Going back!" + Colors.RESET.getColor());
     }
   }
 
@@ -170,11 +178,11 @@ public class VocabularyManager {
    * @param scanner scanner for user's input
    */
   public void replaceWordInVocabulary(Scanner scanner) {
-    System.out.print("Enter the word in English the translation of which you want to replace: ");
+    System.out.print("Enter the word in English the translation of which you want to replace\n(press 0 if you changed your mind): ");
     scanner.nextLine();
     String englishWord = scanner.nextLine();
     if (!vocabulary.containsKey(englishWord)) {
-      System.out.println(Emoji.WRONG.getEmoji() + Colors.RED.getColor() + " Didn't find this word" + Colors.RESET.getColor());
+      System.out.println(Emoji.WRONG.getEmoji() + Colors.RED.getColor() + " Something went wrong... Flying back" + Colors.RESET.getColor());
       return;
     }
     System.out.print("Enter new Spanish word: ");
