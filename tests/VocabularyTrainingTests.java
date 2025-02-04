@@ -17,7 +17,7 @@ public class VocabularyTrainingTests {
   private VocabularyTraining vocabularyTraining;
 
   /**
-   * Test for the runRussianToSpanishTraining method
+   * Test for the runEnglishToSpanishTraining method
    *
    * In this case, we cannot directly verify console interaction, but we can check that the method
    * completes without errors
@@ -25,34 +25,34 @@ public class VocabularyTrainingTests {
   @Test
   public void testRunRussianToSpanishTraining() {
     InputStream originalSystemIn = System.in;
-    String input = "ложка\nнет\n";
+    String input = "spoon\nno\n";
     System.setIn(new ByteArrayInputStream(input.getBytes()));
     try {
       VocabularyManager vocabularyManager = new VocabularyManager();
       VocabularyTraining training = new VocabularyTraining(vocabularyManager);
 
-      assertDoesNotThrow(() -> training.runRussianToSpanishTraining());
+      assertDoesNotThrow(() -> training.runEnglishToSpanishTraining());
     } finally {
       System.setIn(originalSystemIn);
     }
   }
 
   /**
-   * Test for the runSpanishToRussianTraining method
+   * Test for the runSpanishToEnglishTraining method
    *
    * In this case, we cannot directly verify console interaction, but we can check that the method
    * completes without errors
    */
   @Test
-  public void testRunSpanishToRussianTraining() {
+  public void testRunSpanishToEnglishTraining() {
     InputStream originalSystemIn = System.in;
-    String input = "cuchara\nнет\n";
+    String input = "cuchara\nno\n";
     System.setIn(new ByteArrayInputStream(input.getBytes()));
     try {
       VocabularyManager vocabularyManager = new VocabularyManager();
       VocabularyTraining training = new VocabularyTraining(vocabularyManager);
 
-      assertDoesNotThrow(() -> training.runSpanishToRussianTraining());
+      assertDoesNotThrow(() -> training.runSpanishToEnglishTraining());
     } finally {
       System.setIn(originalSystemIn);
     }
@@ -64,7 +64,7 @@ public class VocabularyTrainingTests {
   @Test
   public void testContinueTrainingWithYes() {
     vocabularyTraining = new VocabularyTraining(vocabularyManager);
-    String userInput = "да";
+    String userInput = "yes";
     System.setIn(new ByteArrayInputStream(userInput.getBytes()));
 
     assertFalse(vocabularyTraining.continueTraining(new Scanner(System.in)));
@@ -79,7 +79,7 @@ public class VocabularyTrainingTests {
   public void testContinueTrainingWithNo() {
     vocabularyManager = new VocabularyManager();
     VocabularyTraining vocabularyTraining = new VocabularyTraining(vocabularyManager);
-    String userInput = "нет";
+    String userInput = "no";
     System.setIn(new ByteArrayInputStream(userInput.getBytes()));
 
     assertFalse(vocabularyTraining.continueTraining(new Scanner(System.in)));

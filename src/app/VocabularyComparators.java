@@ -5,16 +5,16 @@ import java.util.Map;
 
 /**
  * The VocabularyComparators class provides static methods to create comparators for sorting
- * vocabulary entries based on Russian and Spanish words.
+ * vocabulary entries based on English and Spanish words.
  */
 public class VocabularyComparators {
 
   /**
-   * Method creates a comparator for sorting vocabulary entries by Russian words (keys)
+   * Method creates a comparator for sorting vocabulary entries by English words (keys)
    *
-   * @return comparator that compares entries based on their Russian words
+   * @return comparator that compares entries based on their English words
    */
-  public static Comparator<Map.Entry<String, String>> byRussian() {
+  public static Comparator<Map.Entry<String, String>> byEnglish() {
     return Comparator.comparing(entry -> entry.getKey());
   }
 

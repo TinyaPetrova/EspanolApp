@@ -1,9 +1,9 @@
-Факт #1: Название страны восходит к слову Hispania (финикийск. «земля кроликов»).
-Факт #2: Язык Euskera в Стране Басков – один из древнейших языков в мире.
-Факт #3: Испанский – третий по популярности в мире язык (носители 400 млн чел.).
-Факт #4: Матч между клубами «Реал Мадрид» и «Барселона» может парализовать страну.
-Факт #5: Испания – первая страна в мире по площади виноградников.
-Факт #6: В Испании насчитывается около 8 тысяч километров пляжей.
-Факт #7: Метро в Мадриде считается вторым по длине в Европе и шестым в мире.
-Факт #8: Испания – главный производитель оливкового масла в мире (44%).
-Факт #9: Объектами всемирного наследия ЮНЕСКО признаны 44 места в Испании.
+Fact #1: The name of the country comes from the word Hispania (Phoenician for “land of rabbits”).
+Fact #2: The Euskera language of the Basque Country is one of the oldest languages in the world.
+Fact #3: Spanish is the third most spoken language in the world (400 million speakers).
+Fact #4: A match between Real Madrid and Barcelona could paralyze the country.
+Fact #5: Spain is the first country in the world in terms of vineyard area.
+Fact #6: Spain has about 8,000 kilometers of beaches.
+Fact #7: The subway in Madrid is considered the second longest in Europe and the sixth longest in the world.
+Fact #8: Spain is the top producer of olive oil in the world (44%).
+Fact #9: Forty-four places in Spain are recognized as UNESCO World Heritage Sites.

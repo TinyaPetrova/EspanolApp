@@ -5,12 +5,12 @@ package texts;
  */
 public enum Message {
   INTRO("•*´¨`*•.¸¸.•*´¨`*HABLAMOS ESPAÑOL•.¸¸..•*´¨`*•.¸¸.•*"),
-  CHEERS("Привет!"),
-  GREETING("Bienvenido в приложение для изучения испанских слов"),
-  ERROR("Неверный выбор. Попробуй снова!"),
-  GREAT("Отличная работа! +1 балл"),
-  WRONG("Не совсем верно! Правильный ответ: "),
-  SCORE_PREFIX("Молодец! Вот твои баллы: ");
+  CHEERS("Heeey!"),
+  GREETING("Bienvenido to the app which can help you to learn spanish words"),
+  ERROR("Wrong. Try again!"),
+  GREAT("Well done! +1 point"),
+  WRONG("Hmm... not exactly. The right answer is: "),
+  SCORE_PREFIX("Wow! Here is your total score: ");
   private final String message;
 
   /**

@@ -84,12 +84,12 @@ public class MenuManager {
           }
         } else {
           System.out.println(
-              Emoji.WRONG.getEmoji() + Colors.RED.getColor() + " Можно выбирать только среди пунктов 1-5!"
+              Emoji.WRONG.getEmoji() + Colors.RED.getColor() + " You can choose only from 1 to 5!"
                   + Colors.RESET.getColor());
         }
       } else {
         System.out.println(
-            Emoji.WRONG.getEmoji() + Colors.RED.getColor() + " Введи цифру от 1 до 5"
+            Emoji.WRONG.getEmoji() + Colors.RED.getColor() + " Enter the number from 1 to 5"
                 + Colors.RESET.getColor());
         scanner.next();
       }
@@ -104,7 +104,7 @@ public class MenuManager {
     System.out.println(
         Colors.YELLOW.getColor() + Separator.UPPER_LINE.getSeparator() + Colors.RESET.getColor());
     System.out.println(
-        Emoji.WRITE_DOWN.getEmoji() + "Здесь хранятся все записанные слова с переводом!");
+        Emoji.WRITE_DOWN.getEmoji() + "Here all your words + translations are stored!");
     System.out.println(
         Colors.YELLOW.getColor() + Separator.DOWN_LINE.getSeparator() + Colors.RESET.getColor());
 
@@ -143,8 +143,8 @@ public class MenuManager {
             vocabularyManager.printVocabulary();
             break;
           case 5:
-            // Turn on alphabet order for Russian words
-            vocabularyManager.saveToFileByRussian();
+            // Turn on alphabet order for English words
+            vocabularyManager.saveToFileByEnglish();
             break;
             // Turn on alphabet order for Spanish words
           case 6:
@@ -167,7 +167,7 @@ public class MenuManager {
         }
       } else {
         System.out.println(
-            Emoji.WRONG.getEmoji() + Colors.RED.getColor() + " Введи цифру от 1 до 8"
+            Emoji.WRONG.getEmoji() + Colors.RED.getColor() + " Enter the number from 1 to 8!"
                 + Colors.RESET.getColor());
         scanner.next();
       }
@@ -182,7 +182,7 @@ public class MenuManager {
     System.out.println(
         Colors.YELLOW.getColor() + Separator.UPPER_LINE.getSeparator() + Colors.RESET.getColor());
     System.out.println(
-        Emoji.IDEA.getEmoji() + " Держи любопытный факт об Испании - у нас их ещё много!");
+        Emoji.IDEA.getEmoji() + " Here you are! One of the most exciting facts is already here :)");
     System.out.println(
         Colors.YELLOW.getColor() + Separator.DOWN_LINE.getSeparator() + Colors.RESET.getColor());
 
@@ -219,7 +219,7 @@ public class MenuManager {
         }
       } else {
         System.out.println(
-            Emoji.WRONG.getEmoji() + Colors.RED.getColor() + " Введи цифру 1 или 2"
+            Emoji.WRONG.getEmoji() + Colors.RED.getColor() + " Enter 1 or 2"
                 + Colors.RESET.getColor());
         scanner.next();
       }
@@ -228,12 +228,12 @@ public class MenuManager {
 
   /**
    * Runs the submenu for vocabulary training
-   * Users can choose between Spanish-to-Russian and Russian-to-Spanish training modes
+   * Users can choose between Spanish-to-English and English-to-Spanish training modes
    */
   private void runVocabularyTrainingSubMenu() {
     System.out.println(
         Colors.YELLOW.getColor() + Separator.UPPER_LINE.getSeparator() + Colors.RESET.getColor());
-    System.out.println(Emoji.GO_AHEAD.getEmoji() + " Давай проверим твои знания слов из словарика!");
+    System.out.println(Emoji.GO_AHEAD.getEmoji() + " Let's check if you remember how to translate the words from your vocabulary");
     System.out.println(
         Colors.YELLOW.getColor() + Separator.DOWN_LINE.getSeparator() + Colors.RESET.getColor());
 
@@ -251,13 +251,13 @@ public class MenuManager {
         scanner.nextLine();
 
         switch (choice) {
-          // Choose Spanish-to-Russian training mode
+          // Choose Spanish-to-English training mode
           case 1:
-            vocabularyTraining.runSpanishToRussianTraining();
+            vocabularyTraining.runSpanishToEnglishTraining();
             break;
-            // Choose Russian-to-Spanish training mode
+            // Choose English-to-Spanish training mode
           case 2:
-            vocabularyTraining.runRussianToSpanishTraining();
+            vocabularyTraining.runEnglishToSpanishTraining();
             break;
             // Return to main menu
           case 3:
@@ -272,7 +272,7 @@ public class MenuManager {
         }
       } else {
         System.out.println(
-            Emoji.WRONG.getEmoji() + Colors.RED.getColor() + " Введи цифру 1, 2 или 3"
+            Emoji.WRONG.getEmoji() + Colors.RED.getColor() + " Enter 1, 2 or 3"
                 + Colors.RESET.getColor());
         scanner.next();
       }

@@ -40,7 +40,7 @@ public class InterestingFacts {
         loadedFacts.add(line);
       }
     } catch (IOException e) {
-      System.out.println(Colors.RED.getColor() + "Ошибка при загрузке фактов: " + e.getMessage() + Colors.RESET.getColor());
+      System.out.println(Colors.RED.getColor() + "Couldn't get the fact: " + e.getMessage() + Colors.RESET.getColor());
     }
     return loadedFacts;
   }
@@ -52,7 +52,7 @@ public class InterestingFacts {
    */
   public String getRandomFact() {
     if (facts.isEmpty()) {
-      return Emoji.WRONG.getEmoji() + Colors.RED.getColor() + " На этом всё! Ты уже знаешь все факты, которые мы собрали для тебя" + Colors.RESET.getColor();
+      return Emoji.WRONG.getEmoji() + Colors.RED.getColor() + " That's it! You have already learned all the facts!" + Colors.RESET.getColor();
     }
     Random random = new Random();
     int randomIndex = random.nextInt(facts.size());

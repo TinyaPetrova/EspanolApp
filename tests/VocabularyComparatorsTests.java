@@ -11,19 +11,19 @@ public class VocabularyComparatorsTests {
   VocabularyComparators vocabularyComparators;
 
   /**
-   * Test case to verify the functionality of the byRussian comparator
-   * It checks if the comparator correctly sorts vocabulary entries by Russian words (keys)
+   * Test case to verify the functionality of the byEnglish comparator
+   * It checks if the comparator correctly sorts vocabulary entries by English words (keys)
    */
   @Test
-  public void testByRussianComparator() {
+  public void testByEnglishComparator() {
     Map<String, String> vocabulary = new HashMap<>();
-    vocabulary.put("ложка", "cuchara");
-    vocabulary.put("мир", "paz");
-    vocabulary.put("галстук", "corbata");
-    Comparator<Map.Entry<String, String>> russianComparator = VocabularyComparators.byRussian();
+    vocabulary.put("spoon", "cuchara");
+    vocabulary.put("peace", "paz");
+    vocabulary.put("tie", "corbata");
+    Comparator<Map.Entry<String, String>> englishComparator = VocabularyComparators.byEnglish();
     Map<String, String> sortedVocabulary = new HashMap<>(vocabulary);
     sortedVocabulary.entrySet().stream()
-        .sorted(russianComparator)
+        .sorted(englishComparator)
         .collect(
             java.util.stream.Collectors.toMap(
                 Map.Entry::getKey,
@@ -33,9 +33,9 @@ public class VocabularyComparatorsTests {
             )
         );
     Map<String, String> expectedVocabulary = new HashMap<>();
-    expectedVocabulary.put("ложка", "cuchara");
-    expectedVocabulary.put("мир", "paz");
-    expectedVocabulary.put("галстук", "corbata");
+    expectedVocabulary.put("spoon", "cuchara");
+    expectedVocabulary.put("peace", "paz");
+    expectedVocabulary.put("tie", "corbata");
 
     assertEquals(expectedVocabulary, sortedVocabulary);
   }
@@ -47,9 +47,9 @@ public class VocabularyComparatorsTests {
   @Test
   public void testBySpanishComparator() {
     Map<String, String> vocabulary = new HashMap<>();
-    vocabulary.put("cuchara", "ложка");
-    vocabulary.put("paz", "мир");
-    vocabulary.put("corbata", "галстук");
+    vocabulary.put("cuchara", "spoon");
+    vocabulary.put("paz", "peace");
+    vocabulary.put("corbata", "tie");
     Comparator<Map.Entry<String, String>> spanishComparator = VocabularyComparators.bySpanish();
     Map<String, String> sortedVocabulary = new HashMap<>(vocabulary);
     sortedVocabulary.entrySet().stream()
@@ -63,9 +63,9 @@ public class VocabularyComparatorsTests {
             )
         );
     Map<String, String> expectedVocabulary = new HashMap<>();
-    expectedVocabulary.put("cuchara", "ложка");
-    expectedVocabulary.put("paz", "мир");
-    expectedVocabulary.put("corbata", "галстук");
+    expectedVocabulary.put("cuchara", "spoon");
+    expectedVocabulary.put("paz", "peace");
+    expectedVocabulary.put("corbata", "tie");
 
     assertEquals(expectedVocabulary, sortedVocabulary);
   }

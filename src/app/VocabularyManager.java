@@ -28,7 +28,7 @@ public class VocabularyManager {
   private Map<String, String> vocabulary;
   private List<String> wordOrder;
   private final String filePath = "res/MyVocabulary.txt";
-  private int score = 0;
+  public int score = 0;
 
   /**
    * Constructor for VocabularyManager, initializing the vocabulary and loading data from a file if available.
@@ -40,69 +40,69 @@ public class VocabularyManager {
   }
 
   /**
-   * Enum for the word types (Russian and Spanish) for vocabulary operations
+   * Enum for the word types (English and Spanish) for vocabulary operations
    */
   public enum WordType {
-    RUSSIAN,
+    ENGLISH,
     SPANISH
   }
 
   /**
    * Method adds a word and its translation to the vocabulary
    *
-   * @param russian Russian word
+   * @param english English word
    * @param spanish Spanish word
    */
-  public void addWord(String russian, String spanish) {
-    vocabulary.put(russian, spanish);
-    wordOrder.add(russian);
+  public void addWord(String english, String spanish) {
+    vocabulary.put(english, spanish);
+    wordOrder.add(english);
   }
 
   /**
-   * Method removes a word pair from the vocabulary by its Russian word
+   * Method removes a word pair from the vocabulary by its English word
    *
-   * @param russian Russian word to be removed
+   * @param english English word to be removed
    */
-  public void removeWord(String russian) {
-    vocabulary.remove(russian);
+  public void removeWord(String english) {
+    vocabulary.remove(english);
   }
 
   /**
-   * Method replaces the translation of a Russian word in the vocabulary.
+   * Method replaces the translation of an English word in the vocabulary.
    *
-   * @param russian Russian word to be replaced
+   * @param english English word to be replaced
    * @param newSpanish new translation in Spanish
    */
-  public void replaceWord(String russian, String newSpanish) {
-    vocabulary.put(russian, newSpanish);
+  public void replaceWord(String english, String newSpanish) {
+    vocabulary.put(english, newSpanish);
   }
 
   /**
-   * Method prints the vocabulary, displaying the Russian words and their Spanish translations
+   * Method prints the vocabulary, displaying the English words and their Spanish translations
    */
   public void printVocabulary() {
-    System.out.println(Colors.YELLOW.getColor() + "Вот последние записанные тобой слова:" + Colors.RESET.getColor());
+    System.out.println(Colors.YELLOW.getColor() + "Here are the last words you put into your vocabulary:" + Colors.RESET.getColor());
     System.out.println(Colors.PURPLE.getColor() + Separator.DECORATION.getSeparator() + Colors.RESET.getColor());
-    for (String russian : wordOrder) {
-      String spanish = vocabulary.get(russian);
-      System.out.println(russian + " - " + spanish);
+    for (String english : wordOrder) {
+      String spanish = vocabulary.get(english);
+      System.out.println(english + " - " + spanish);
     }
     System.out.println(Colors.PURPLE.getColor() + Separator.DECORATION.getSeparator() + Colors.RESET.getColor());
   }
 
   /**
-   * Method saves the vocabulary to a file, sorted by Russian words
+   * Method saves the vocabulary to a file, sorted by English words
    */
-  public void saveToFileByRussian() {
+  public void saveToFileByEnglish() {
     List<Entry<String, String>> sortedVocabulary = new ArrayList<>(vocabulary.entrySet());
-    sortedVocabulary.sort(VocabularyComparators.byRussian());
+    sortedVocabulary.sort(VocabularyComparators.byEnglish());
     try (FileWriter writer = new FileWriter(filePath)) {
       for (Map.Entry<String, String> entry : sortedVocabulary) {
         writer.write(entry.getKey() + " - " + entry.getValue() + "\n");
       }
-      System.out.println(Emoji.GO_AHEAD.getEmoji() + Colors.PURPLE.getColor() + " Обновили! Включён алфавитный порядок для русских слов: см. в файле " + filePath + Colors.RESET.getColor());
+      System.out.println(Emoji.GO_AHEAD.getEmoji() + Colors.PURPLE.getColor() + " Updated! Enabled alphabetical order for English words: see in file " + filePath + Colors.RESET.getColor());
     } catch (IOException e) {
-      System.out.println(Colors.RED.getColor() + "Ошибка при записи в файл: " + e.getMessage() + Colors.RESET.getColor());
+      System.out.println(Colors.RED.getColor() + "Couldn't write the word into file: " + e.getMessage() + Colors.RESET.getColor());
     }
   }
 
@@ -116,9 +116,9 @@ public class VocabularyManager {
       for (Map.Entry<String, String> entry : sortedVocabulary) {
         writer.write(entry.getKey() + " - " + entry.getValue() + "\n");
       }
-      System.out.println(Emoji.GO_AHEAD.getEmoji() + Colors.PURPLE.getColor() + " Обновили! Включён алфавитный порядок для испанских слов: см. в файле " + filePath + Colors.RESET.getColor());
+      System.out.println(Emoji.GO_AHEAD.getEmoji() + Colors.PURPLE.getColor() + " Updated! Enabled alphabetical order for Spanish words: see in file " + filePath + Colors.RESET.getColor());
     } catch (IOException e) {
-      System.out.println(Colors.RED.getColor() + "Ошибка при записи в файл: " + e.getMessage() + Colors.RESET.getColor());
+      System.out.println(Colors.RED.getColor() + "Couldn't write the word into file: " + e.getMessage() + Colors.RESET.getColor());
     }
   }
 
@@ -129,94 +129,60 @@ public class VocabularyManager {
    */
   void addWordToVocabulary(Scanner scanner) {
     scanner.nextLine();
-    String russianWord;
+    String englishWord;
     do {
-      System.out.print("Введи слово на русском: ");
-      russianWord = scanner.nextLine();
-      if (!containsCyrillic(russianWord)) {
-        System.out.println(Emoji.WRONG.getEmoji() + Colors.RED.getColor() + " Ошибка: поменяй раскладку на клавиатуре!" + Colors.RESET.getColor());
-      }
-    } while (!containsCyrillic(russianWord));
+      System.out.print("Enter an English word: ");
+      englishWord = scanner.nextLine();
+    } while (englishWord.isEmpty());
+
     String spanishWord;
     do {
-      System.out.print("Введи перевод: ");
+      System.out.print("Enter the translation: ");
       spanishWord = scanner.nextLine();
-      if (!containsLatin(spanishWord)) {
-        System.out.println(Emoji.WRONG.getEmoji() + Colors.RED.getColor() + " Ошибка: поменяй раскладку на клавиатуре!" + Colors.RESET.getColor());
-      }
-    } while (!containsLatin(spanishWord));
-    addWord(russianWord, spanishWord);
-    saveToFileByRussian();
+    } while (spanishWord.isEmpty());
+
+    addWord(englishWord, spanishWord);
+    saveToFileByEnglish();
   }
 
   /**
-   * Method removes a word and its translation from the vocabulary by its Russian word
+   * Method removes a word and its translation from the vocabulary by its English word
    *
    * @param scanner scanner for user's input
    */
   public void removeWordFromVocabulary(Scanner scanner) {
     scanner.nextLine();
-    System.out.print("Введи слово на русском, пару с которым хочешь удалить: ");
-    String russianWord = scanner.nextLine();
-    if (vocabulary.containsKey(russianWord)) {
-      removeWord(russianWord);
-      saveToFileByRussian();
-      wordOrder.remove(russianWord);
-      System.out.println(Colors.PURPLE.getColor() + "Удалено из словаря!" + Colors.RESET.getColor());
+    System.out.print("Enter an English word, which you want to delete: ");
+    String englishWord = scanner.nextLine();
+    if (vocabulary.containsKey(englishWord)) {
+      removeWord(englishWord);
+      saveToFileByEnglish();
+      wordOrder.remove(englishWord);
+      System.out.println(Colors.PURPLE.getColor() + "Deleted successfully!" + Colors.RESET.getColor());
     } else {
-      System.out.println(Colors.RED.getColor() + "Такого слова нет!" + Colors.RESET.getColor());
+      System.out.println(Colors.RED.getColor() + "Didn't find this word :(" + Colors.RESET.getColor());
     }
   }
 
   /**
-   * Method replaces the translation of a Russian word in the vocabulary
+   * Method replaces the translation of an English word in the vocabulary
    *
    * @param scanner scanner for user's input
    */
   public void replaceWordInVocabulary(Scanner scanner) {
-    System.out.print("Введи слово на русском, перевод которого хочешь заменить: ");
+    System.out.print("Enter the word in English the translation of which you want to replace: ");
     scanner.nextLine();
-    String russianWord = scanner.nextLine();
-    if (!vocabulary.containsKey(russianWord)) {
-      System.out.println(Emoji.WRONG.getEmoji() + Colors.RED.getColor() + " Слово не найдено в словаре" + Colors.RESET.getColor());
+    String englishWord = scanner.nextLine();
+    if (!vocabulary.containsKey(englishWord)) {
+      System.out.println(Emoji.WRONG.getEmoji() + Colors.RED.getColor() + " Didn't find this word" + Colors.RESET.getColor());
       return;
     }
-    System.out.print("Введи новое испанское слово: ");
+    System.out.print("Enter new Spanish word: ");
     String newSpanishWord = scanner.nextLine();
-    replaceWord(russianWord, newSpanishWord);
-    saveToFileByRussian();
+    replaceWord(englishWord, newSpanishWord);
+    saveToFileByEnglish();
     System.out.println(
-        Colors.PURPLE.getColor() + "Слово заменено в словаре!" + Colors.RESET.getColor());
-  }
-
-  /**
-   * Method checks if a given text contains Cyrillic characters
-   *
-   * @param text text to be checked
-   * @return true if the text contains Cyrillic characters, otherwise false
-   */
-  public boolean containsCyrillic(String text) {
-    for (char c : text.toCharArray()) {
-      if (Character.UnicodeBlock.of(c) == Character.UnicodeBlock.CYRILLIC) {
-        return true;
-      }
-    }
-    return false;
-  }
-
-  /**
-   * Method checks if a given text contains Latin characters
-   *
-   * @param text text to be checked
-   * @return true if the text contains Latin characters, otherwise false
-   */
-  public boolean containsLatin(String text) {
-    for (char c : text.toCharArray()) {
-      if (Character.UnicodeBlock.of(c) == Character.UnicodeBlock.BASIC_LATIN) {
-        return true;
-      }
-    }
-    return false;
+        Colors.PURPLE.getColor() + "Success!" + Colors.RESET.getColor());
   }
 
   /**
@@ -232,7 +198,7 @@ public class VocabularyManager {
         }
       }
     } catch (IOException e) {
-      System.out.println(Colors.RED.getColor() + "Не получилось загрузить данные!" + Colors.RESET.getColor());
+      System.out.println(Colors.RED.getColor() + "Unable to load the data!" + Colors.RESET.getColor());
     }
   }
 
@@ -246,7 +212,7 @@ public class VocabularyManager {
         ProcessBuilder pb = new ProcessBuilder("notepad.exe", file.getAbsolutePath());
         pb.start();
       } else {
-        System.out.println("Файл не найден.");
+        System.out.println("File wasn't found");
       }
     } catch (IOException e) {
       e.printStackTrace();
@@ -254,17 +220,17 @@ public class VocabularyManager {
   }
 
   /**
-   * Method gets a random word from the vocabulary of the specified word type (Russian or Spanish)
+   * Method gets a random word from the vocabulary of the specified word type (English or Spanish)
    *
-   * @param wordType type of word for training (Russian or Spanish).
+   * @param wordType type of word for training (English or Spanish).
    * @return random word of the specified type
    */
   public String getRandomWord(WordType wordType) {
     if (vocabulary.isEmpty()) {
-      System.out.println(Emoji.WRONG.getEmoji() + Colors.RED.getColor() + " В словаре нет слов!" + Colors.RESET.getColor());
+      System.out.println(Emoji.WRONG.getEmoji() + Colors.RED.getColor() + " Vocabulary is empty!" + Colors.RESET.getColor());
       return null;
     }
-    List<String> words = wordType.equals(WordType.RUSSIAN) ? new ArrayList<>(vocabulary.keySet()) : new ArrayList<>(vocabulary.values());
+    List<String> words = wordType.equals(WordType.ENGLISH) ? new ArrayList<>(vocabulary.keySet()) : new ArrayList<>(vocabulary.values());
     Random random = new Random();
     int randomIndex = random.nextInt(words.size());
     return words.get(randomIndex);
@@ -274,24 +240,24 @@ public class VocabularyManager {
    * Method gets the translation of a word in the specified word type (Russian or Spanish)
    *
    * @param word translation for training
-   * @param wordType type of word (Russian or Spanish) translation
+   * @param wordType type of word (English or Spanish) translation
    * @return translation of the word in the specified type
    */
   public String getTranslation(String word, WordType wordType) {
-    if (wordType.equals(WordType.RUSSIAN)) {
+    if (wordType.equals(WordType.ENGLISH)) {
       return vocabulary.get(word);
     } else if (wordType.equals(WordType.SPANISH) && vocabulary.containsValue(word)) {
       return getKeyByValue(vocabulary, word);
     }
-    return "Перевод не найден";
+    return "Translation wasn't found";
   }
 
   /**
-   * Method gets the key (Russian word) associated with a given value (Spanish word) in the map
+   * Method gets the key (English word) associated with a given value (Spanish word) in the map
    *
    * @param map map containing words pairs
    * @param value value (Spanish word) which helps to find the corresponding key
-   * @return key (Russian word) associated with the specified value
+   * @return key (English word) associated with the specified value
    */
   private String getKeyByValue(Map<String, String> map, String value) {
     for (Map.Entry<String, String> entry : map.entrySet()) {
@@ -299,7 +265,7 @@ public class VocabularyManager {
         return entry.getKey();
       }
     }
-    return "Перевод не найден";
+    return "Translation wasn't found";
   }
 
   /**
@@ -310,23 +276,23 @@ public class VocabularyManager {
   private void saveScore(int score) {
     try (FileWriter writer = new FileWriter("res/MyScore.txt")) {
       writer.write(Integer.toString(score));
-      System.out.println(Emoji.GO_AHEAD.getEmoji() + Colors.PURPLE.getColor() + " Сохранили баллы: " + score + Colors.RESET.getColor());
+      System.out.println(Emoji.GO_AHEAD.getEmoji() + Colors.PURPLE.getColor() + " Your score is saved: " + score + Colors.RESET.getColor());
     } catch (IOException e) {
-      System.out.println(Colors.RED.getColor() + "Ошибка при записи баллов в файл: " + e.getMessage() + Colors.RESET.getColor());
+      System.out.println(Colors.RED.getColor() + "Error when writing the score to a file: " + e.getMessage() + Colors.RESET.getColor());
     }
   }
 
   /**
    * Increments the user's score and saves it to a file
    */
-  void incrementScore() {
+  public void incrementScore() {
     score++;
     saveScore(score);
     try (FileWriter writer = new FileWriter("res/MyScore.txt")) {
       writer.write(SCORE_PREFIX.getMessage());
       writer.write(Integer.toString(score));
     } catch (IOException e) {
-      System.out.println(Colors.RED.getColor() + "Ошибка при записи баллов в файл: " + e.getMessage() + Colors.RESET.getColor());
+      System.out.println(Colors.RED.getColor() + "Error when writing the score to a file: " + e.getMessage() + Colors.RESET.getColor());
     }
   }
 
@@ -343,14 +309,14 @@ public class VocabularyManager {
           try {
             score = Integer.parseInt(parts[1].trim());
           } catch (NumberFormatException e) {
-            System.out.println(Colors.RED.getColor() + "Ошибка при загрузке баллов из файла: неверный формат данных" + Colors.RESET.getColor());
+            System.out.println(Colors.RED.getColor() + "Error when loading score from file: wrong data format" + Colors.RESET.getColor());
           }
         }
       }
       ProcessBuilder pb = new ProcessBuilder("notepad.exe", "res/MyScore.txt");
       pb.start();
     } catch (IOException e) {
-      System.out.println(Colors.RED.getColor() + "Ошибка при загрузке баллов из файла: " + e.getMessage() + Colors.RESET.getColor());
+      System.out.println(Colors.RED.getColor() + "Error when loading the score from a file: " + e.getMessage() + Colors.RESET.getColor());
     }
   }
 }
