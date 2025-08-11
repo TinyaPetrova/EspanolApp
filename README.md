@@ -23,26 +23,26 @@ AppRunner
 ### How to use the app:
 1. Clone the repository in the terminal:
 ##
-   `git clone https://github.com/TinyaPetrova/EspanolApp.git HablamosEspanol`
+   git clone https://github.com/TinyaPetrova/EspanolApp.git HablamosEspanol
 
 2. Reach the created folder:
 ##
-   `cd HablamosEspanol`
+   cd HablamosEspanol
 
 3. Compile and run the program.
 
    For Windows (MinGW/MSYS2, Git Bash), Linux (Ubuntu/Debian/Fedora/Arch),
    MacOS:
 ##
-   `javac -d out $(find src -name "*.java") && java -cp out app.AppRunner`
+   javac -d out $(find src -name "*.java") && java -cp out app.AppRunner
 
    For Windows (Command Prompt / CMD):
 ##
-   `javac -d out src\*.java && java -cp out app.AppRunner`
+   javac -d out src\*.java && java -cp out app.AppRunner
 
    For Windows PowerShell:
 ##
-   `javac -d out (Get-ChildItem -Recurse -Filter *.java).FullName | ForEach-Object { $_.ToString() } && java -cp out app.AppRunner`
+   javac -d out (Get-ChildItem -Recurse -Filter *.java).FullName | ForEach-Object { $_.ToString() } && java -cp out app.AppRunner
   
 Note:
 Due to the use of special characters and emoji, the display of information in the console may be different depending on the shell you are using.
